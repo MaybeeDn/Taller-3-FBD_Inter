@@ -30,8 +30,8 @@ def inicio():
 
 @app.get('/bares/{bar_id}/comentarios')
 def get_comentarios(bar_id: int):
-    comentarios = db["comentarios"].find({"bar_id": bar_id})
-    return comentarios
+    comentarios = db["comentarios"].find({"bar_id": bar_id}), {'_id': 0}
+    return list(comentarios)
 
 @app.post('/bares/{bar_id}/comentarios')
 def post_comentario(bar_id: int, datos: dict):
